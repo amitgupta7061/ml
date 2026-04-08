@@ -12,7 +12,7 @@ SELECT MAX(Salary) AS HighestSalary, MIN(Salary) AS LowestSalary FROM Employees;
 SELECT AVG(Salary) AS AverageSalary FROM Employees;
 
 -- ==========================================
--- 2. GROUPING DATA (GROUP BY & HAVING)
+-- 2. GROUPING DATA (GROUP BY & HAVING) 
 -- ==========================================
 
 -- Count employees per department
@@ -39,6 +39,38 @@ INNER JOIN Departments d ON e.DepartmentID = d.DepartmentID;
 SELECT d.DepartmentName, e.FirstName, e.LastName
 FROM Departments d
 LEFT JOIN Employees e ON d.DepartmentID = e.DepartmentID;
+
+-- right join
+SELECT e.FirstName, e.LastName, d.DepartmentName
+FROM Employees e
+RIGHT JOIN Departments d ON e.DepartmentID = d.DepartmentID;    
+
+-- outer join 
+SELECT * FROM Employees as e LEFT JOIN Departments as d ON e.DepartmentID = d.DepartmentID
+UNION
+SELECT * FROM Employees as e RIGHT JOIN Departments as d ON e.DepartmentID = d.DepartmentID;
+
+-- cross join
+SELECT e.FirstName, e.LastName, d.DepartmentName
+FROM Employees e
+CROSS JOIN Departments d;
+
+-- self join
+SELECT e1.FirstName AS Employee, e2.FirstName AS Manager
+FROM Employees e1
+LEFT JOIN Employees e2 ON e1.ManagerID = e2.EmployeeID;
+
+--left exclusive join
+SELECT e.FirstName, e.LastName
+FROM Employees e
+LEFT JOIN Departments d ON e.DepartmentID = d.DepartmentID
+WHERE d.DepartmentID IS NULL;
+
+-- right exclusive join
+SELECT e.FirstName, e.LastName
+FROM Employees e
+RIGHT JOIN Departments d ON e.DepartmentID = d.DepartmentID
+WHERE e.EmployeeID IS NULL;
 
 -- ==========================================
 -- 4. SUBQUERIES

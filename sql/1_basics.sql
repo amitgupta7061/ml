@@ -19,9 +19,11 @@ CREATE TABLE Employees (
     LastName VARCHAR(50) NOT NULL,
     Age INT,
     HireDate DATE,
-    Salary DECIMAL(10, 2),
+    Salary DECIMAL(10, 2) DEFAULT 50000,
     DepartmentID INT,
     FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID)
+
+    CONSTRAINT ageCheck CHECK (age >= 18)
 );
 
 -- Alter table to add a new column
@@ -61,6 +63,9 @@ SELECT * FROM Employees;
 
 -- Select specific columns
 SELECT FirstName, LastName, Salary FROM Employees;
+
+-- select distinct values
+SELECT DISTINCT DepartmentID FROM Employees;
 
 -- Filtering with WHERE
 SELECT * FROM Employees WHERE Age > 30;

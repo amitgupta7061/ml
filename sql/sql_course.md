@@ -28,7 +28,28 @@ SQL is the standard language for dealing with Relational Databases. It is used t
    - `COMMIT`: Commits a transaction.
    - `ROLLBACK`: Rollbacks a transaction in case of any error occurs.
 
-## 2. Basic Filtering & Sorting
+## 2. Relational Database Keys & Constraints
+Keys are crucial in relational databases because they ensure data uniqueness and establish relationships between different tables.
+
+### Types of SQL Keys:
+- **Super Key:** A single column or a combination of columns that can uniquely identify a record in a table.
+- **Candidate Key:** A minimal Super Key. It contains no redundant attributes. A table can have multiple Candidate Keys.
+- **Primary Key (PK):** A chosen Candidate Key used to uniquely identify each row in a table. A table can have only ONE Primary Key. It cannot contain `NULL` values.
+- **Foreign Key (FK):** A column (or set of columns) in one table that refers to the Primary Key in another table. It is used to link two tables together and enforce referential integrity.
+- **Unique Key:** Ensures that all values in a column are different. Unlike a Primary Key, a Unique Key can usually accept one `NULL` value.
+- **Composite Key:** A Primary Key that is made up of two or more columns. Neither column alone guarantees uniqueness, but together they do.
+- **Alternate Key:** Any Candidate Key that was not chosen to be the Primary Key.
+
+### SQL Constraints:
+Constraints are rules enforced on data columns on a table.
+- `NOT NULL`: Ensures that a column cannot have a NULL value.
+- `UNIQUE`: Ensures that all values in a column are different (same as Unique Key).
+- `PRIMARY KEY`: A combination of `NOT NULL` and `UNIQUE`. Uniquely identifies each row.
+- `FOREIGN KEY`: Uniquely identifies a row in another table.
+- `CHECK`: Ensures that all values in a column satisfy a specific condition.
+- `DEFAULT`: Sets a default value for a column when no value is specified.
+
+## 3. Basic Filtering & Sorting
 - **`WHERE`**: Filters records based on specific conditions.
 - **`ORDER BY`**: Sorts the result set in ascending (`ASC`) or descending (`DESC`) order.
 - **Operators**: `=`, `<`, `>`, `<=`, `>=`, `<>`, `BETWEEN`, `LIKE`, `IN`.
@@ -56,3 +77,23 @@ A `JOIN` clause is used to combine rows from two or more tables, based on a rela
 
 ---
 **Next Steps**: Check the accompanying `.sql` files in this directory to see these concepts in action!
+
+
+
+## Transaction 
+ACID PROPERTY
+
+- Atomicity: All operations in a transaction are completed successfully, or none are applied.
+- Consistency: A transaction takes the database from one valid state to another, maintaining database invari
+- Isolation: Transactions are isolated from each other until they are completed, preventing interference.
+- Durability: Once a transaction is committed, it remains so, even in the event of a system failure.
+
+
+## index in sql
+
+ - index are special database objects that make data retrieval faster by providing quick access to rows in a table based on the values of one or more columns.
+
+ Syntax
+    CREATE INDEX index_name ON table_name (column1, column2, ...);
+    SHOW INDEX FROM table_name; -- to view existing indexes on a table
+    DROP index index_name ON table_name; -- to remove an index from a table
