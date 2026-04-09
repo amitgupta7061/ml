@@ -45,3 +45,6 @@ BEGIN
     SELECT AVG(age) INTO avg_age FROM student WHERE age > age_threshold;
 END$$
 DELIMITER ;
+
+-- Drop procedure
+DROP PROCEDURE IF EXISTS GetStudentByAge;
